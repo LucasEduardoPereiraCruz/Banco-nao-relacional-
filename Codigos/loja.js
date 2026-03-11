@@ -58,3 +58,6 @@ db.produtos.insertMany([
     { "preco": 
         {"$gte": 1000, "$lte": 3000} 
     })
+
+    
+    db.produtos.find({ "preco": {"$gte": 2000} })
