@@ -60,4 +60,44 @@ db.produtos.insertMany([
     })
 
     
-    db.produtos.find({ "preco": {"$gte": 2000} })
+  db.produtos.find({ "preco": {"$gte": 2000} })
+
+
+
+// Coleção users do banco Loja
+
+db.users.insertMany([
+  {
+    "_id": 1,
+    "username": "Joao",
+    "age": 24,
+    "active": true,
+    "premium": false,
+    "hobbies": ["reading", "soccer"],
+    "tasks": [
+      { "title": "Study MongoDB", "status": "pending" }
+    ]
+  },
+  {
+    "_id": 2,
+    "username": "Maria",
+    "age": 30,
+    "active": true,
+    "premium": true,
+    "hobbies": ["cooking", "yoga"],
+    "tasks": [
+      { "title": "Complete Project", "status": "done" }
+    ]
+  },
+  {
+    "_id": 3,
+    "username": "Carlos",
+    "age": 35,
+    "active": true,
+    "premium": false,
+    "hobbies": ["gaming", "music"],
+    "tasks": [
+      { "title": "Write Report", "status": "pending" }
+    ]
+  }
+]);
