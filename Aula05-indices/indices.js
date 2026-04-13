@@ -84,10 +84,17 @@ db.usuarios.find({email: "joao@email.com"}).hint({email: 1}).explain("executionS
 
 
 
-// ====== EXEMPLO USANDO HINT ======= //
+// ====== EXEMPLO USANDO HINT ======= // // ====== AVALIANDO O DESEMPENHO DE INDICES ======= //
+
+// Cria os indices
 db.pedidos.createIndex({email: 1})
 db.pedidos.createIndex({cliente: 1, status: 1})
 
+// Consulta 
 db.pedidos.find({email: "joao@email.com"}).explain("executionStats")
 
+// Forçando o uso do indice cliente_1_status_1, podemos usar .hint()
 db.pedidos.find({email: "joao@email.com"}).hint({cliente: 1, status: 1}).explain("executionStats")
+
+
+// FALTA FAZER O EXERCICIO 

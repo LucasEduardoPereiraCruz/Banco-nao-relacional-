@@ -101,3 +101,5 @@ db.users.insertMany([
     ]
   }
 ]);
+
+// FALTA FAZER OS OPERADORES LÓGICOS E OS EXERCICIOS
