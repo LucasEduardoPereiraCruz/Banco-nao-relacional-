@@ -102,4 +102,58 @@ db.users.insertMany([
   }
 ]);
 
-// FALTA FAZER OS OPERADORES LÓGICOS E OS EXERCICIOS
+
+
+// ========== OPERADORES LÓGICOS ========== // 
+// $and exige que todas as condições especificasdas sejam verdadeiras
+db.produtos.find({
+  "$and": [
+    {"categoria": "Eletrônicos"}, 
+    {"preco": {"$gt": 3000}}
+  ]
+})
+// Retornará Notebook Dell pois ele é de ELETRONICOS e tem o preço maior que 3000 
+
+
+
+// $or retorna os documentos que satisfaçam pelo menos uma das condições especificadas 
+db.produtos.find({
+  "$or": [
+    {"categoria": "Eletrônicos"}, 
+    {"preco": {"$gt": 4000}}
+  ]
+})
+// Qualquer produto da categoria ELETRONICOS ou que tenha o preço superior a 4000 será retornado 
+
+
+// $Not é um operador que nega uma condição especifica 
+db.produtos.find({ "preço": {
+    "$not": {"$gt": 3000}
+  }
+})
+// Retornará todos os produtos cujo preço não seja maior que 3000 
+
+
+// $Nor é o oposto de $or, excluindo documentos que satisfaçam qualquer uma das condições listadas 
+db.produtos.find({
+  "$nor": [
+    {"categoria": "Eletrônicos"}, 
+    {"preco": {"$gt": 4000}}
+  ]
+})
+// Serão retornados apenas produtos que não sejam da categoria ELETRONICOS e que tenham preço inferior ou igual a 4000 
+
+
+
+// ========== OPERADORES DE ELEMENTOS ========== // 
+
+// $exists verifica se um campo está presente ou não em um documento
+db.produtos.find({"avaliacao": {"$exists": true}})
+// retorna todos os produtos que possuem o campo avaliacao 
+
+// $type filtra os documentos com base no tipo de dado armazenado em um campo 
+db.produtos.find({"preco": {"$type": "double"} })
+// retorna todos os documentos onde o campo preco seja do tipo double
+
+
+// FALTA FAZER OS EXERCICIOS
