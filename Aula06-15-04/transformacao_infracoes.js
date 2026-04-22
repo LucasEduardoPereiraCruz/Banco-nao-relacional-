@@ -1,4 +1,4 @@
-db.infracao_rascunho.aggregate([
+db.infracoes.aggregate([
 
     {
         $project: {

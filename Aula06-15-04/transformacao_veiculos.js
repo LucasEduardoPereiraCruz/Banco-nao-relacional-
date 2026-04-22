@@ -1,4 +1,4 @@
-db.veiculos_rascunho.aggregate([
+db.veiculos.aggregate([
 
     {
         $project: {
@@ -50,7 +50,7 @@ db.veiculos_rascunho.aggregate([
         }
     },
 
-    { $limit: 10 },
+    { $limit: 10 }, 
 
     { $out: "veiculo" }
 

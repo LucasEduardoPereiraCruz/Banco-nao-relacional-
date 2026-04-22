@@ -1,4 +1,4 @@
-db.cores_rascunho.aggregate([
+db.cores.aggregate([
 
     // Define os campos do documento final
     {

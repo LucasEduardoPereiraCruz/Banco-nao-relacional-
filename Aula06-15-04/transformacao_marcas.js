@@ -1,4 +1,4 @@
-db.marcas_rascunho.aggregate([
+db.marcas.aggregate([
 
     {
         $project: {

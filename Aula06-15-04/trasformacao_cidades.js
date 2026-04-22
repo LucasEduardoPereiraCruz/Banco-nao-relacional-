@@ -1,4 +1,4 @@
-db.cidades_rascunho.aggregate([
+db.cidades.aggregate([
     //Passo 1: Desconstroi o array principal "estados"
     {
         $unwind: "$estados"
@@ -9,7 +9,7 @@ db.cidades_rascunho.aggregate([
     },
     //Passo 3: Define a estrutura final (projetando apneas os campos que você quer) 
     {
-       project: {
+       $project: {
         _id: 0, // 0 remove o  _id . Mude para 1 se quiser mantê-lo.
         nome_cidade: "$estados.cidades",
         estado: "$estados.sigla",

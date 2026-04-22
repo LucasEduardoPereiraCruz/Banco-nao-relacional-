@@ -12,7 +12,7 @@ db.modelo_rascunho.aggregate([
                 ]
             },
 
-            // Marca associada (simples, sem lookup)
+            // Marca associada (simples)
             marca: {
                 $arrayElemAt: [
                     ["Toyota", "Honda", "Chevrolet", "Volkswagen", "Ford"],
