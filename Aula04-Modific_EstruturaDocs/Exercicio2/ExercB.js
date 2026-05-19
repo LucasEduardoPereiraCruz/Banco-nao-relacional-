@@ -5,7 +5,7 @@ db.menu.insertMany([
 ]); 
 
 // Taco agora vem com Guacamole
-db.restaurante.updateOne(
+db.menu.updateOne(
     {dish: "Taco"},
     {$push: {ingredientes: "Guacamole"}}
 );

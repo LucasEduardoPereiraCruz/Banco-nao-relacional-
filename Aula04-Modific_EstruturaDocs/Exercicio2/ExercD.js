@@ -5,10 +5,8 @@ db.menu.insertMany([
 ]); 
 
 // Removeram o Beef do Taco, substituiram por Chicken. Atualize
-db.restaurante.updateOne(
-    {dish: "Taco"},
-    {
-        $pull: {ingredientes: "Beef"},
-        $push: {ingredientes: "Chicken"}
-    }
-);
+  db.menu.updateOne(
+    { dish: "Taco" },
+    { $set: { "ingredients.$[elem]": "Chicken" } }, // O $[elem] significa: Encontre um item específico dentro do array e altere ele
+    { arrayFilters: [{ elem: "Beef" }] } // arrayFilters aqui ele define qual item do array deve ser alterado.
+  );

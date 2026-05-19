@@ -5,7 +5,7 @@ db.menu.insertMany([
 ]); 
 
 // Sushi teve um reajuste e custa 35 agora. Atualize
-db.restaurante.updateOne(
+db.menu.updateOne(
     {dish: "Sushi"},
-    {$set: {preco: 35}}
+    {$set: {price: 35}}
 );
