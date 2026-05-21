@@ -2,7 +2,7 @@
 db.usuarios.createIndex({email: 1})
 
 // Buscas pelo campo email serão mais rápidas 
-db.usuarios.find({email: "joao@email.com"})
+db.usuarios.find({email: "roberto_kevin_dias@hlt.arq.br"})
 
 
 // ====== INDICES COMPOSTOS ======= // 
@@ -10,7 +10,7 @@ db.usuarios.find({email: "joao@email.com"})
 db.usuarios.createIndex({nome: 1, idade: -1}) // Este indice ajuda a achar nomes por ordem crescente e idade em ordem decrescente
 
 
-db.usuarios.find({nome: "Carlos"}).sort({idade: -1})
+db.usuarios.find({nome: "Mariah Rebeca Barros"}).sort({idade: -1})
 
 
 // ====== INDICES EM ARRAYS ======= //  

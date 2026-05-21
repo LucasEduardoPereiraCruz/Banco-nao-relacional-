@@ -7,6 +7,6 @@ db.menu.insertMany([
 // Removeram o Beef do Taco, substituiram por Chicken. Atualize
   db.menu.updateOne(
     { dish: "Taco" },
-    { $set: { "ingredients.$[elem]": "Chicken" } }, // O $[elem] significa: Encontre um item específico dentro do array e altere ele
+    { $set: { "ingredientes.$[elem]": "Chicken" } }, // O $[elem] significa: Encontre um item específico dentro do array e altere ele
     { arrayFilters: [{ elem: "Beef" }] } // arrayFilters aqui ele define qual item do array deve ser alterado.
   );

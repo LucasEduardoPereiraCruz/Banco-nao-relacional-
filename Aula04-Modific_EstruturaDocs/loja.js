@@ -9,7 +9,7 @@ db.users.updateOne(
  // Usuário João agr tem 25 anos 
 
  // updateMany
- db.users.updateOne(
+ db.users.updateMany(
     {active: true},
     {$set: {premium: true}}
 );
@@ -129,6 +129,3 @@ db.users.updateOne(
     {$push: {hobbies: {$each: ["coding", "music"] } } }
 );  
  // coding e music são adicionados a hobbies
-
-
-// FALTA OS EXERCICIOS

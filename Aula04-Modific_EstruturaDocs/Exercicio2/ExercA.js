@@ -8,5 +8,5 @@ db.menu.insertMany([
 // Auementa em 10% o valor de todos os pratos 
 db.menu.updateMany(
     {}, 
-    {$mul: {price: 1.10}}
+    {$mul: {price: 1.1}}
 ); 
