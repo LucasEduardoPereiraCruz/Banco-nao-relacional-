@@ -5,21 +5,64 @@ db.usuarios.createIndex({email: 1})
 db.usuarios.find({email: "roberto_kevin_dias@hlt.arq.br"})
 
 
+
 // ====== INDICES COMPOSTOS ======= // 
 // Utilizado para achar multiplos resultados 
 db.usuarios.createIndex({nome: 1, idade: -1}) // Este indice ajuda a achar nomes por ordem crescente e idade em ordem decrescente
 
 
-db.usuarios.find({nome: "Mariah Rebeca Barros"}).sort({idade: -1})
+db.usuarios.find({nome: "Mariah Rebeca Barros"}).sort({idade: -1}).explain("executionStats")
+
 
 
 // ====== INDICES EM ARRAYS ======= //  
+
+db.pedidos.insertMany([
+    {
+        cliente: "João",
+        itens: ["Pizza", "Refrigerante", "Batata Frita"]
+    },
+    {
+        cliente: "Maria",
+        itens: ["Hamburguer", "Refrigerante"]
+    },
+    {
+        cliente: "Carlos",
+        itens: ["Pizza", "Suco"]
+    }
+])
+
 // Criar um indice para um array 
 db.pedidos.createIndex({itens: 1}) // Melhora buscas em coleções onde itens são arrays 
+
+// Exemplo de busca 
+db.pedidos.find({itens: "Pizza"}).explain("executionStats")
 
 
 
 // ====== INDICES EM CAMPOS TEXTUAIS ======= //
+
+// ====== COLEÇÃO PRODUTOS (EXEMPLO PARA INDICE TEXTUAL) ======= //
+
+db.produtos.insertMany([
+    {
+        nome: "Notebook Dell",
+        descricao: "Notebook gamer com RTX e 16GB de RAM"
+    },
+    {
+        nome: "Mouse Logitech",
+        descricao: "Mouse sem fio para escritório"
+    },
+    {
+        nome: "Notebook Lenovo",
+        descricao: "Notebook para estudos com SSD e 8GB RAM"
+    },
+    {
+        nome: "Teclado Mecânico",
+        descricao: "Teclado RGB gamer"
+    }
+])
+
 // Criar um indice para busca textual 
 db.produtos.createIndex({descricao: "text"})
 
@@ -28,10 +71,40 @@ db.produtos.find({$text: {$search: "Notebook"}}) // Retorna todos os produtos cu
 
 
 // ====== INDICES GEOESPACIAIS ======= //
+
+// Criando alguns locais de exemplo
+db.locais.insertMany([
+    {
+        nome: "Shopping",
+        localizacao: {
+            type: "Point",
+            coordinates: [-47.4040, -22.5650]
+        }
+    },
+    {
+        nome: "Hospital",
+        localizacao: {
+            type: "Point",
+            coordinates: [-47.4100, -22.5700]
+        }
+    }
+])
+
 db.locais.createIndex({localizacao: "2dsphere"}) // Agora podemos buscar locais próximos de um ponto especifico 
 
 
-
+// Buscar locais próximos de um ponto
+db.locais.find({
+    localizacao: {
+        $near: {
+            $geometry: {
+                type: "Point",
+                coordinates: [-47.4040, -22.5650]
+            },
+            $maxDistance: 3000
+        }
+    }
+})
 
 
 // ====== QUANTO UM INDICE OCUPA ======= //
@@ -93,8 +166,6 @@ db.pedidos.createIndex({cliente: 1, status: 1})
 // Consulta 
 db.pedidos.find({email: "joao@email.com"}).explain("executionStats")
 
-// Forçando o uso do indice cliente_1_status_1, podemos usar .hint()
+// Forçando o uso do indice cliente_1_status_1, podemos usar .hint() - hint força a usar tal indice 
 db.pedidos.find({email: "joao@email.com"}).hint({cliente: 1, status: 1}).explain("executionStats")
 
-
-// FALTA FAZER O EXERCICIO 
