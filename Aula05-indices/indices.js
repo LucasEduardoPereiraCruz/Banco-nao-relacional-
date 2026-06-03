@@ -36,7 +36,7 @@ db.pedidos.insertMany([
 db.pedidos.createIndex({itens: 1}) // Melhora buscas em coleções onde itens são arrays 
 
 // Exemplo de busca 
-db.pedidos.find({itens: "Pizza"}).explain("executionStats")
+db.pedidos.find({itens: "Pizza"})
 
 
 
@@ -133,7 +133,7 @@ db.usuarios.stats().indexSizes
 {
     "_id_": 4096000,
     "email_1": 1146880,
-    "_nome_1_idade_1": 2293760
+    "_nome_1_idade_1": 2293760; 
 }
 
 // Explicação 
