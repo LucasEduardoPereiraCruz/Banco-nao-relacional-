@@ -3,7 +3,8 @@
 db.cliente.insertMany([{
     "_id": 153, 
     "nome": "Alice", 
-    "email": "alice@exemple.com"
+    "email": "alice@exemple.com", 
+    "regiao": "Sudeste" 
 }]); 
 
 
@@ -16,13 +17,36 @@ db.venda.insertMany([{
 }]); 
 
 
-db.item.insertMany([{
-    "_id": 1, 
-    "venda_id": 57, 
-    "produto": "Laptop", 
-    "quantidade": 2, 
-    "preco_unitario": 1200 
-}]); 
+db.item.insertMany([
+{
+    "_id": 1,
+    "venda_id": 57,
+    "produto": "Laptop",
+    "quantidade": 2,
+    "preco_unitario": 1200
+},
+{
+    "_id": 2,
+    "venda_id": 57,
+    "produto": "Mouse",
+    "quantidade": 3,
+    "preco_unitario": 50
+},
+{
+    "_id": 3,
+    "venda_id": 57,
+    "produto": "Teclado",
+    "quantidade": 4,
+    "preco_unitario": 100
+},
+{
+    "_id": 4,
+    "venda_id": 57,
+    "produto": "Monitor",
+    "quantidade": 1,
+    "preco_unitario": 800
+}
+]);
 
 
 // Contagem de vendas por cliente 
@@ -30,8 +54,8 @@ db.item.insertMany([{
 // Usar $group com cliente_id
 
 db.venda.aggregate([{
-    $group: {
-        _id: "$cliente_id", 
-        total_vendas: {$sum: 1}
+    $group: { // Agrupa os documentos de acordo com um campo
+        _id: "$cliente_id",  // Cria um grupo para cada cliente_id encontrado
+        total_vendas: {$sum: 1} // Conta quantas vendas existem em cada grupo - // Cada documento soma 1 ao total
     }
 }]) 
